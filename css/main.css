@@ -104,6 +104,8 @@ h1 {
   font-size: 1.5em; 
   font-weight: 700; 
   letter-spacing: -0.02em;
+  position: relative;
+  display: inline-block;
 }
 
 h2 { font-size: 1.3em; margin-top: 0.4em; margin-bottom: 0.4em; font-weight: 600; }
@@ -329,6 +331,18 @@ pre > code {
 .contact-list-link:hover { color: var(--accent-color); }
 
 .contact-list-link:hover .contact-fa { color: var(--accent-color); }
+
+.contact-list-item {
+  margin-bottom: 0.4em;
+  padding: 0.3em 0;
+  border-radius: var(--border-radius-small);
+  transition: var(--transition);
+}
+
+.contact-list-item:hover {
+  background: rgba(67, 192, 246, 0.05);
+  padding-left: 0.5em;
+}
 
 @media (min-width: 700px) { .short { display: none; /* hide the short content on large screens */ } .long { display: inline; /* show the long content on large screens */ } }
 
@@ -663,6 +677,7 @@ html { overflow-y: scroll; }
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(72, 81, 105, 0.08);
 }
 
 .publication-wrapper::before {
@@ -729,10 +744,31 @@ html { overflow-y: scroll; }
 
 .publication-title-container { 
   font-size: 1.15em; 
-  line-height: 1.3; 
+  line-height: 1.4; 
   font-weight: 600; 
   width: 100%; 
-  margin-bottom: 0.4em;
+  margin-bottom: 0.6em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.publication-title-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.5s;
+  z-index: 1;
+}
+
+.publication-title-container:hover::before {
+  left: 100%;
 }
 
 .publication-title-container a { 
@@ -1039,4 +1075,255 @@ html { overflow-y: scroll; }
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
   color: white;
   transform: scale(1.05);
+}
+
+/* Improved text selection */
+::selection {
+  background: rgba(67, 192, 246, 0.2);
+  color: var(--text-color);
+}
+
+::-moz-selection {
+  background: rgba(67, 192, 246, 0.2);
+  color: var(--text-color);
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced mobile typography */
+@media screen and (max-width: 480px) {
+  body {
+    font-size: 0.95em;
+    line-height: 1.65;
+  }
+  
+  h0 {
+    font-size: 1.5em;
+    line-height: 1.2;
+  }
+  
+  h1 {
+    font-size: 1.3em;
+    line-height: 1.25;
+  }
+  
+  h2 {
+    font-size: 1.2em;
+    line-height: 1.3;
+  }
+  
+  .publication-title-container {
+    font-size: 1.05em;
+    line-height: 1.4;
+  }
+}
+
+/* Subtle loading animation for images */
+img {
+  opacity: 0;
+  animation: fadeInImage 0.6s ease-in-out forwards;
+}
+
+@keyframes fadeInImage {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Enhanced button hover effects */
+.publication-details-list li,
+.award-date,
+.teaching-semester {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.publication-details-list li::before,
+.award-date::before,
+.teaching-semester::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.publication-details-list li:hover::before,
+.award-date:hover::before,
+.teaching-semester:hover::before {
+  left: 100%;
+}
+
+/* Improved print styles */
+@media print {
+  .site-header,
+  .site-footer,
+  .publication-details-container {
+    display: none !important;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+    color: black;
+    background: white;
+  }
+  
+  .publication-wrapper,
+  .awards li,
+  .teaching li {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    margin-bottom: 1em;
+  }
+}
+
+/* Reduced motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Final polish improvements */
+
+/* Better spacing for main content sections */
+.page-content .wrapper > h1:first-of-type {
+  margin-top: 0.2em;
+}
+
+.page-content .wrapper > h1 {
+  margin-top: 1.5em;
+  margin-bottom: 0.8em;
+}
+
+/* Enhanced publication title wrapping */
+.publication-title-container { 
+  font-size: 1.15em; 
+  line-height: 1.4; 
+  font-weight: 600; 
+  width: 100%; 
+  margin-bottom: 0.6em;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.publication-title-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: left 0.5s;
+  z-index: 1;
+}
+
+.publication-title-container:hover::before {
+  left: 100%;
+}
+
+/* Improved link styling throughout */
+.page-content a:not(.publication-title-container a):not(.page-link) {
+  position: relative;
+  display: inline-block;
+}
+
+.page-content a:not(.publication-title-container a):not(.page-link)::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -1px;
+  left: 0;
+  background: var(--accent-color);
+  transition: var(--transition-fast);
+}
+
+.page-content a:not(.publication-title-container a):not(.page-link):hover::after {
+  width: 100%;
+}
+
+/* Better mobile navigation spacing */
+@media screen and (max-width: 699px) {
+  #mobile-nav-menu li {
+    padding: 0.8em 0.6em;
+  }
+  
+  #mobile-nav-menu .page-link {
+    font-size: 1.2em;
+  }
+}
+
+/* Enhanced bio section layout */
+.about-me-text {
+  clear: both;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.about-me-text p {
+  padding-bottom: 1em;
+  line-height: 1.7;
+}
+
+/* Subtle improvements to publication layout */
+.publication-wrapper {
+  border: 1px solid rgba(72, 81, 105, 0.08);
+}
+
+.publication-wrapper:hover {
+  border-color: rgba(67, 192, 246, 0.3);
+}
+
+/* Better visual hierarchy for headings */
+h1::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+  margin-top: 0.5em;
+  border-radius: 2px;
+}
+
+/* Improved contact list styling */
+.contact-list-item {
+  margin-bottom: 0.4em;
+  padding: 0.3em 0;
+  border-radius: var(--border-radius-small);
+  transition: var(--transition);
+}
+
+.contact-list-item:hover {
+  background: rgba(67, 192, 246, 0.05);
+  padding-left: 0.5em;
+}
+
+/* Better responsive images */
+img {
+  border-radius: var(--border-radius-small);
+  transition: var(--transition);
+}
+
+img:hover:not(.bio-photo img) {
+  transform: scale(1.02);
+  box-shadow: var(--shadow);
 }
