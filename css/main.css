@@ -65,7 +65,7 @@ body {
   max-width: 100%; 
   overflow-x: hidden; 
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
-  font-size: 1.05em; 
+  font-size: 1em; 
   line-height: 1.6; 
   color: var(--text-color); 
   font-weight: 400; 
@@ -75,7 +75,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure { margin-bottom: 0.8em; }
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure { margin-bottom: 0.75em; }
 
 h0 h1, h2, h3, h4, h5, h6 { 
   font-family: "Inter", sans-serif; 
@@ -92,7 +92,7 @@ h0 {
   margin-top: 0.6em; 
   margin-bottom: 0.6em; 
   font-family: "Inter", sans-serif; 
-  font-size: 1.8em; 
+  font-size: 1.7em; 
   font-weight: 700; 
   letter-spacing: -0.03em;
 }
@@ -101,16 +101,16 @@ h1 {
   margin-top: 0.5em; 
   margin-bottom: 0.5em; 
   font-family: "Inter", sans-serif; 
-  font-size: 1.6em; 
+  font-size: 1.5em; 
   font-weight: 700; 
   letter-spacing: -0.02em;
 }
 
-h2 { font-size: 1.35em; margin-top: 0.4em; margin-bottom: 0.4em; font-weight: 600; }
+h2 { font-size: 1.3em; margin-top: 0.4em; margin-bottom: 0.4em; font-weight: 600; }
 
-h3 { font-size: 1.2em; font-weight: 600; color: var(--text-color); margin-top: 0.8em; margin-bottom: 0.3em; }
+h3 { font-size: 1.15em; font-weight: 600; color: var(--text-color); margin-top: 0.8em; margin-bottom: 0.3em; }
 
-h4 { font-size: 1.1em; font-weight: 600; margin-top: 0.4em; margin-bottom: 0.4em; }
+h4 { font-size: 1.05em; font-weight: 600; margin-top: 0.4em; margin-bottom: 0.4em; }
 
 hr { 
   margin-top: 0.8em; 
@@ -149,7 +149,7 @@ blockquote {
   color: var(--text-light); 
   border-left: 4px solid var(--accent-color); 
   padding-left: 1.2em; 
-  font-size: 1.1em; 
+  font-size: 1.05em; 
   letter-spacing: -0.01em; 
   font-style: italic; 
   margin: 1.5em 0;
@@ -200,15 +200,40 @@ pre > code {
 .align-center { display: block; margin-left: auto; margin-right: auto; }
 
 .bio-photo { 
-  float: left; 
+  float: left !important; 
   margin-bottom: 0em; 
   margin-top: 4px; 
-  margin-right: 20px; 
+  margin-right: 25px; 
   margin-bottom: 0.4em; 
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   transition: var(--transition);
   overflow: hidden;
+  background: transparent;
+  width: 180px !important;
+  height: 240px !important;
+  max-width: 180px !important;
+  padding: 0;
+  border: none;
+}
+
+.bio-photo p {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.bio-photo img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--border-radius);
+  background: transparent;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .bio-photo:hover {
@@ -216,7 +241,53 @@ pre > code {
   transform: translateY(-4px) scale(1.02);
 }
 
-@media screen and (max-width: 699px) { .bio-photo { background-color: inherit; display: block; margin-top: 0.8em; margin-left: auto; margin-right: auto; width: 50%; } }
+@media screen and (max-width: 699px) { 
+  .bio-photo { 
+    background: transparent; 
+    display: block; 
+    float: left;
+    margin-top: 0.8em; 
+    margin-right: 1.2em;
+    margin-bottom: 0.8em;
+    width: 120px; 
+    height: 160px;
+    max-width: 120px;
+  }
+  
+  .about-me-text {
+    clear: none;
+    overflow: hidden;
+  }
+  
+  .about-me-text h0 {
+    margin-top: 0.8em;
+    margin-bottom: 0.5em;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .bio-photo { 
+    background: transparent; 
+    display: block; 
+    float: none;
+    margin-top: 0.8em; 
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-bottom: 0.8em;
+    width: 60%; 
+    height: auto;
+    max-width: none;
+  }
+  
+  .about-me-text {
+    clear: both;
+  }
+  
+  .about-me-text h0 {
+    text-align: center;
+    margin-top: 0.5em;
+  }
+}
 
 .about-me-text { clear: both; }
 
@@ -280,7 +351,7 @@ ul.listing li.listing-item a { font-weight: 400; font-family: "Inter", sans-seri
   z-index: 1000; 
   backdrop-filter: blur(10px);
   transition: var(--transition);
-  padding: 0.3em 0;
+  padding: 0.4em 0;
 }
 
 .site-header-container { 
@@ -289,13 +360,13 @@ ul.listing li.listing-item a { font-weight: 400; font-family: "Inter", sans-seri
   align-items: center;
 }
 
-@media screen and (max-width: 699px) { .site-header-container { padding-top: 0.3em; padding-bottom: 0.3em; } }
+@media screen and (max-width: 699px) { .site-header-container { padding-top: 0.4em; padding-bottom: 0.4em; } }
 
 .nav-container { align-self: flex-end; }
 
 .site-title { 
   font-family: "Inter", sans-serif; 
-  font-size: 1.7em; 
+  font-size: 1.8em; 
   font-variant: none; 
   letter-spacing: -0.02em; 
   text-transform: none; 
@@ -321,14 +392,14 @@ ul.listing li.listing-item a { font-weight: 400; font-family: "Inter", sans-seri
   text-align: center; 
   font-family: "Inter", sans-serif; 
   font-weight: 500; 
-  font-size: 0.95em; 
+  font-size: 1em; 
   text-transform: none; 
-  line-height: 2; 
-  padding-left: 0.7em; 
-  padding-right: 0.7em; 
+  line-height: 2.2; 
+  padding-left: 0.8em; 
+  padding-right: 0.8em; 
   transition: var(--transition);
   border-radius: var(--border-radius);
-  margin: 0 0.05em;
+  margin: 0 0.1em;
 }
 
 .site-nav li:hover { 
@@ -362,7 +433,7 @@ ul.listing li.listing-item a { font-weight: 400; font-family: "Inter", sans-seri
   transition: var(--transition);
 }
 
-@media screen and (max-width: 699px) { .mobile-nav-icon-container { display: block; font-size: 1.4em; color: #f1f1f1; } }
+@media screen and (max-width: 699px) { .mobile-nav-icon-container { display: block; font-size: 1.5em; color: #f1f1f1; } }
 
 .mobile-nav-icon-container:hover { 
   cursor: pointer; 
@@ -463,29 +534,29 @@ ul.listing li.listing-item a { font-weight: 400; font-family: "Inter", sans-seri
 
 .page-content { 
   padding: 0px; 
-  margin-top: 55px; 
+  margin-top: 60px; 
 }
 
-.page-content > p { font-size: 1em; margin-bottom: 1em; }
+.page-content > p { font-size: 0.95em; margin-bottom: 1em; }
 
 @media screen and (max-width: 699px) { 
   .site-header-container { 
-    padding-top: 0.3em; 
-    padding-bottom: 0.3em; 
+    padding-top: 0.4em; 
+    padding-bottom: 0.4em; 
   } 
   
   .site-title { 
-    font-size: 1.4em; 
+    font-size: 1.5em; 
   }
   
   .mobile-nav-icon-container { 
     display: block; 
-    font-size: 1.4em; 
+    font-size: 1.5em; 
     color: #f1f1f1; 
   }
   
   .page-content { 
-    margin-top: 85px; 
+    margin-top: 90px; 
   } 
 }
 
@@ -497,7 +568,7 @@ html { overflow-y: scroll; }
 
 .post-meta { font-size: 0.95em; color: var(--text-light); }
 
-.post-link { display: block; font-size: 1.4em; }
+.post-link { display: block; font-size: 1.3em; }
 
 .research-interests { 
   list-style-type: none; 
@@ -515,7 +586,7 @@ html { overflow-y: scroll; }
 
 .news-list { 
   border: 0px; 
-  font-size: 0.95em; 
+  font-size: 0.9em; 
   border-spacing: 0em 0.8em; 
 }
 
@@ -584,9 +655,9 @@ html { overflow-y: scroll; }
   display: flex; 
   box-shadow: var(--shadow-publication); 
   background: linear-gradient(135deg, #fcfdf8 0%, #f8faf5 100%); 
-  margin-top: 1.8em; 
-  margin-bottom: 1.5em; 
-  padding: 1.5em; 
+  margin-top: 1.2em; 
+  margin-bottom: 1em; 
+  padding: 1em; 
   border-left: 4px solid var(--primary-color); 
   border-radius: var(--border-radius);
   transition: var(--transition);
@@ -622,11 +693,11 @@ html { overflow-y: scroll; }
 }
 
 .publication-image-container { 
-  width: 160px; 
-  height: 160px; 
+  width: 120px; 
+  height: 120px; 
   overflow: hidden; 
-  margin-left: 0.8em; 
-  margin-right: 1.5em; 
+  margin-left: 0.5em; 
+  margin-right: 1em; 
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   transition: var(--transition);
@@ -657,11 +728,11 @@ html { overflow-y: scroll; }
 }
 
 .publication-title-container { 
-  font-size: 1.3em; 
-  line-height: 1.4; 
+  font-size: 1.15em; 
+  line-height: 1.3; 
   font-weight: 600; 
   width: 100%; 
-  margin-bottom: 0.8em;
+  margin-bottom: 0.4em;
 }
 
 .publication-title-container a { 
@@ -693,9 +764,9 @@ html { overflow-y: scroll; }
 .publication-title-container a:visited { color: var(--primary-color); }
 
 .publication-info-container { 
-  font-size: 1.05em; 
-  line-height: 1.5; 
-  margin-bottom: 1em;
+  font-size: 0.95em; 
+  line-height: 1.4; 
+  margin-bottom: 0.3em;
 }
 
 .publication-authors b { 
@@ -711,7 +782,8 @@ html { overflow-y: scroll; }
   display: block; 
   font-style: italic;
   color: var(--text-light);
-  margin-top: 0.3em;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
 }
 
 .publication-abstract:before { content: 'abstract: '; }
@@ -739,8 +811,8 @@ html { overflow-y: scroll; }
 
 .publication-details-container { 
   display: block; 
-  padding-top: 0.8em; 
-  margin-top: auto;
+  padding-top: 0.3em; 
+  margin-top: 0;
 }
 
 .publication-details-list { 
@@ -755,15 +827,15 @@ html { overflow-y: scroll; }
 .publication-details-list li { 
   display: inline-block; 
   text-align: center; 
-  font-size: 0.85em; 
+  font-size: 0.8em; 
   font-weight: 500;
   background: linear-gradient(135deg, #eff0f4 0%, #e8eaf0 100%); 
   box-shadow: var(--shadow); 
   z-index: 1000; 
-  padding: 0.5em 1em; 
-  margin-top: 0.6em; 
-  margin-right: 0.8em; 
-  border-radius: 25px;
+  padding: 0.3em 0.7em; 
+  margin-top: 0.3em; 
+  margin-right: 0.5em; 
+  border-radius: 20px;
   transition: var(--transition);
   border: 1px solid rgba(72, 81, 105, 0.1);
 }
@@ -797,8 +869,8 @@ html { overflow-y: scroll; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.2em 1.5em;
-  margin-bottom: 1em;
+  padding: 0.8em 1.5em;
+  margin-bottom: 0.6em;
   background: linear-gradient(135deg, rgba(67, 192, 246, 0.03) 0%, rgba(67, 192, 246, 0.01) 100%);
   border-radius: var(--border-radius);
   border-left: 4px solid var(--accent-color);
@@ -860,3 +932,111 @@ html { overflow-y: scroll; }
 }
 
 /*# sourceMappingURL=main.css.map */
+
+/* Teaching Styles */
+.teaching {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.teaching li {
+  display: flex;
+  align-items: flex-start;
+  padding: 1.2em 1.5em;
+  margin-bottom: 1.2em;
+  background: linear-gradient(135deg, rgba(72, 81, 105, 0.03) 0%, rgba(72, 81, 105, 0.01) 100%);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--primary-color);
+  transition: var(--transition);
+  border: 1px solid rgba(72, 81, 105, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.teaching li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(72, 81, 105, 0.1) 0%, rgba(72, 81, 105, 0.05) 100%);
+  transition: var(--transition);
+  z-index: 0;
+}
+
+.teaching li:hover {
+  background: linear-gradient(135deg, rgba(72, 81, 105, 0.08) 0%, rgba(72, 81, 105, 0.03) 100%);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary-color);
+}
+
+.teaching li:hover::before {
+  width: 100%;
+}
+
+.teaching li p {
+  margin: 0;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  line-height: 1.6;
+}
+
+.teaching li strong {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--primary-color);
+  display: block;
+  margin-bottom: 0.3em;
+}
+
+.teaching li a {
+  color: var(--accent-color);
+  font-weight: 500;
+  transition: var(--transition-fast);
+  position: relative;
+}
+
+.teaching li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+  transition: var(--transition-fast);
+}
+
+.teaching li a:hover {
+  color: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.teaching li a:hover::after {
+  width: 100%;
+}
+
+.teaching-semester {
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 0.9em;
+  background: linear-gradient(135deg, rgba(72, 81, 105, 0.15) 0%, rgba(72, 81, 105, 0.1) 100%);
+  padding: 0.4em 1em;
+  border-radius: 25px;
+  margin-left: 1em;
+  transition: var(--transition-fast);
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(72, 81, 105, 0.2);
+  white-space: nowrap;
+}
+
+.teaching li:hover .teaching-semester {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+  color: white;
+  transform: scale(1.05);
+}
