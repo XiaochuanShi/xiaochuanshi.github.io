@@ -73,6 +73,7 @@ body {
   -webkit-text-size-adjust: 100%; 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure { margin-bottom: 0.75em; }
@@ -137,7 +138,12 @@ a:hover {
   transform: translateY(-1px);
 }
 
-img { max-width: 100%; vertical-align: middle; }
+img {
+  max-width: 100%; 
+  vertical-align: middle;
+  border-radius: var(--border-radius-small);
+  transition: var(--transition);
+}
 
 figure > img { display: block; }
 
@@ -201,7 +207,7 @@ pre > code {
 
 .align-center { display: block; margin-left: auto; margin-right: auto; }
 
-.bio-photo { 
+.bio-photo {
   float: left !important; 
   margin-bottom: 0em; 
   margin-top: 4px; 
@@ -217,6 +223,8 @@ pre > code {
   max-width: 180px !important;
   padding: 0;
   border: none;
+  opacity: 1;
+  animation: none;
 }
 
 .bio-photo p {
@@ -236,6 +244,8 @@ pre > code {
   background: transparent;
   margin: 0 !important;
   padding: 0 !important;
+  opacity: 1 !important;
+  animation: none !important;
 }
 
 .bio-photo:hover {
@@ -254,6 +264,8 @@ pre > code {
     width: 120px; 
     height: 160px;
     max-width: 120px;
+    opacity: 1;
+    animation: none;
   }
   
   .about-me-text {
@@ -279,6 +291,8 @@ pre > code {
     width: 60%; 
     height: auto;
     max-width: none;
+    opacity: 1;
+    animation: none;
   }
   
   .about-me-text {
@@ -291,7 +305,7 @@ pre > code {
   }
 }
 
-.about-me-text { clear: both; }
+.about-me-text { clear: both; opacity: 0; animation: fadeInUp 0.8s ease-out 0.4s forwards; }
 
 .about-me-text p { padding-bottom: 1em; }
 
@@ -308,16 +322,24 @@ pre > code {
   padding-right: 0.4em; 
   vertical-align: top; 
   transition: var(--transition);
+  opacity: 0;
+  animation: fadeInSlide 0.5s ease-out forwards;
+  margin-bottom: 0.05em;
+  padding: 0.05em 0;
+  border-radius: var(--border-radius-small);
 }
 
-.contact-list-item:visited { color: #999999; }
-
-.contact-list-item:hover { 
-  color: var(--accent-color); 
-  transform: translateX(4px);
+.contact-list-item:hover {
+  background: rgba(67, 192, 246, 0.05);
+  padding-left: 0.5em;
 }
 
-@media screen and (max-width: 699px) { .contact-list-item { margin-bottom: 0.24em; } }
+@media screen and (max-width: 699px) { 
+  .contact-list-item { 
+    margin-bottom: 0.03em; 
+    padding: 0.03em 0;
+  } 
+}
 
 .contact-list-link { 
   color: #999999; 
@@ -331,18 +353,6 @@ pre > code {
 .contact-list-link:hover { color: var(--accent-color); }
 
 .contact-list-link:hover .contact-fa { color: var(--accent-color); }
-
-.contact-list-item {
-  margin-bottom: 0.4em;
-  padding: 0.3em 0;
-  border-radius: var(--border-radius-small);
-  transition: var(--transition);
-}
-
-.contact-list-item:hover {
-  background: rgba(67, 192, 246, 0.05);
-  padding-left: 0.5em;
-}
 
 @media (min-width: 700px) { .short { display: none; /* hide the short content on large screens */ } .long { display: inline; /* show the long content on large screens */ } }
 
@@ -549,6 +559,8 @@ ul.listing li.listing-item a { font-weight: 400; font-family: "Inter", sans-seri
 .page-content { 
   padding: 0px; 
   margin-top: 60px; 
+  opacity: 0;
+  animation: pageLoad 0.8s ease-out 0.1s forwards;
 }
 
 .page-content > p { font-size: 0.95em; margin-bottom: 1em; }
@@ -574,7 +586,10 @@ ul.listing li.listing-item a { font-weight: 400; font-family: "Inter", sans-seri
   } 
 }
 
-html { overflow-y: scroll; }
+html { 
+  overflow-y: scroll; 
+  scrollbar-gutter: stable;
+}
 
 .post-list { margin-left: 0; list-style: none; }
 
@@ -678,6 +693,8 @@ html { overflow-y: scroll; }
   position: relative;
   overflow: hidden;
   border: 1px solid rgba(72, 81, 105, 0.08);
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
 }
 
 .publication-wrapper::before {
@@ -717,6 +734,9 @@ html { overflow-y: scroll; }
   box-shadow: var(--shadow);
   transition: var(--transition);
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }
 
 .publication-image-container:hover {
@@ -733,6 +753,12 @@ html { overflow-y: scroll; }
   left: 50%;
   transform: translate(-50%, -50%); 
   transition: var(--transition);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.publication-image-container img.loaded {
+  opacity: 1;
 }
 
 .publication-container { 
@@ -753,6 +779,8 @@ html { overflow-y: scroll; }
   hyphens: auto;
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  animation: fadeInDown 0.6s ease-out forwards;
 }
 
 .publication-title-container::before {
@@ -914,6 +942,8 @@ html { overflow-y: scroll; }
   border: 1px solid rgba(67, 192, 246, 0.1);
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  animation: slideInLeft 0.6s ease-out forwards;
 }
 
 .awards li::before {
@@ -988,6 +1018,8 @@ html { overflow-y: scroll; }
   border: 1px solid rgba(72, 81, 105, 0.1);
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  animation: slideInRight 0.6s ease-out forwards;
 }
 
 .teaching li::before {
@@ -1122,7 +1154,7 @@ html {
 }
 
 /* Subtle loading animation for images */
-img {
+img:not(.bio-photo img) {
   opacity: 0;
   animation: fadeInImage 0.6s ease-in-out forwards;
 }
@@ -1300,30 +1332,321 @@ h1::after {
   width: 100%;
   height: 3px;
   background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
-  margin-top: 0.5em;
+  margin-top: 0.3em;
   border-radius: 2px;
 }
 
-/* Improved contact list styling */
-.contact-list-item {
-  margin-bottom: 0.4em;
-  padding: 0.3em 0;
-  border-radius: var(--border-radius-small);
-  transition: var(--transition);
-}
-
-.contact-list-item:hover {
-  background: rgba(67, 192, 246, 0.05);
-  padding-left: 0.5em;
-}
-
 /* Better responsive images */
-img {
-  border-radius: var(--border-radius-small);
-  transition: var(--transition);
-}
-
-img:hover:not(.bio-photo img) {
+img:not(.bio-photo img) {
   transform: scale(1.02);
   box-shadow: var(--shadow);
+}
+
+/* Loading animations and performance improvements */
+
+/* Staggered loading animation for content blocks */
+.publication-wrapper {
+  opacity: 0;
+  animation: slideInUp 0.6s ease-out forwards;
+}
+
+.publication-wrapper:nth-child(1) { animation-delay: 0.1s; }
+.publication-wrapper:nth-child(2) { animation-delay: 0.2s; }
+.publication-wrapper:nth-child(3) { animation-delay: 0.3s; }
+.publication-wrapper:nth-child(4) { animation-delay: 0.4s; }
+.publication-wrapper:nth-child(5) { animation-delay: 0.5s; }
+.publication-wrapper:nth-child(6) { animation-delay: 0.6s; }
+.publication-wrapper:nth-child(7) { animation-delay: 0.7s; }
+.publication-wrapper:nth-child(8) { animation-delay: 0.8s; }
+.publication-wrapper:nth-child(9) { animation-delay: 0.9s; }
+.publication-wrapper:nth-child(n+10) { animation-delay: 1s; }
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Awards loading animation */
+.awards li {
+  opacity: 0;
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.awards li:nth-child(1) { animation-delay: 0.1s; }
+.awards li:nth-child(2) { animation-delay: 0.2s; }
+.awards li:nth-child(3) { animation-delay: 0.3s; }
+.awards li:nth-child(4) { animation-delay: 0.4s; }
+.awards li:nth-child(5) { animation-delay: 0.5s; }
+.awards li:nth-child(6) { animation-delay: 0.6s; }
+.awards li:nth-child(7) { animation-delay: 0.7s; }
+.awards li:nth-child(8) { animation-delay: 0.8s; }
+.awards li:nth-child(n+9) { animation-delay: 0.9s; }
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Teaching blocks loading animation */
+.teaching li {
+  opacity: 0;
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+.teaching li:nth-child(1) { animation-delay: 0.1s; }
+.teaching li:nth-child(2) { animation-delay: 0.2s; }
+.teaching li:nth-child(3) { animation-delay: 0.3s; }
+.teaching li:nth-child(4) { animation-delay: 0.4s; }
+.teaching li:nth-child(5) { animation-delay: 0.5s; }
+.teaching li:nth-child(6) { animation-delay: 0.6s; }
+.teaching li:nth-child(n+7) { animation-delay: 0.7s; }
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Bio section loading animation */
+.about-me-text {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Contact info loading animation */
+.contact-list-item {
+  opacity: 0;
+  animation: fadeInSlide 0.5s ease-out forwards;
+}
+
+.contact-list-item:nth-child(1) { animation-delay: 0.6s; }
+.contact-list-item:nth-child(2) { animation-delay: 0.7s; }
+.contact-list-item:nth-child(3) { animation-delay: 0.8s; }
+.contact-list-item:nth-child(4) { animation-delay: 0.9s; }
+.contact-list-item:nth-child(5) { animation-delay: 1s; }
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* News table loading animation */
+.news-list tr {
+  opacity: 0;
+  animation: fadeInTable 0.5s ease-out forwards;
+}
+
+.news-list tr:nth-child(1) { animation-delay: 0.1s; }
+.news-list tr:nth-child(2) { animation-delay: 0.2s; }
+.news-list tr:nth-child(3) { animation-delay: 0.3s; }
+.news-list tr:nth-child(4) { animation-delay: 0.4s; }
+.news-list tr:nth-child(5) { animation-delay: 0.5s; }
+.news-list tr:nth-child(n+6) { animation-delay: 0.6s; }
+
+@keyframes fadeInTable {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Headings loading animation */
+h0, h1, h2, h3 {
+  opacity: 0;
+  animation: fadeInDown 0.6s ease-out forwards;
+}
+
+h0 { animation-delay: 0.1s; }
+h1 { animation-delay: 0.2s; }
+h2 { animation-delay: 0.3s; }
+h3 { animation-delay: 0.4s; }
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Performance optimizations */
+.publication-wrapper,
+.awards li,
+.teaching li,
+.bio-photo,
+.publication-image-container,
+.member-wrapper {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Smooth page transitions */
+.page-content {
+  opacity: 0;
+  animation: pageLoad 0.8s ease-out 0.1s forwards;
+}
+
+@keyframes pageLoad {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Intersection Observer fallback for better performance */
+@media (prefers-reduced-motion: no-preference) {
+  .publication-wrapper,
+  .awards li,
+  .teaching li,
+  .contact-list-item,
+  .news-list tr {
+    animation-play-state: running;
+  }
+}
+
+/* GPU acceleration for smoother animations */
+.publication-wrapper:hover,
+.awards li:hover,
+.teaching li:hover,
+.bio-photo:hover {
+  transform: translateZ(0);
+}
+
+/* Optimized font loading */
+@font-face {
+  font-family: 'Inter';
+  font-display: swap;
+  font-weight: 300 700;
+}
+
+/* Better image loading with skeleton effect */
+.publication-image-container,
+.member-image-container {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.publication-image-container img,
+.member-image-container img {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.publication-image-container img.loaded,
+.member-image-container img.loaded {
+  opacity: 1;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Lazy loading optimization */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* Enhanced scroll performance */
+* {
+  scroll-behavior: smooth;
+}
+
+@supports (scroll-behavior: smooth) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Memory optimization for animations */
+.publication-wrapper:not(:hover),
+.awards li:not(:hover),
+.teaching li:not(:hover) {
+  will-change: auto;
+}
+
+/* Preload critical animations */
+@media (min-width: 700px) {
+  .publication-wrapper,
+  .awards li,
+  .teaching li {
+    transform: translateZ(0);
+  }
+}
+
+/* Better scrollbar styling to reduce visual impact */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+  border-radius: 6px;
+  border: 2px solid #f8f9fa;
+  transition: var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--accent-hover), var(--accent-color));
 }
