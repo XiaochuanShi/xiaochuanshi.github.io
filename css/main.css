@@ -305,9 +305,16 @@ pre > code {
   }
 }
 
-.about-me-text { clear: both; opacity: 0; animation: fadeInUp 0.8s ease-out 0.4s forwards; }
+.about-me-text { 
+  clear: both; 
+  text-align: left; 
+  word-spacing: normal; 
+  letter-spacing: normal; 
+  opacity: 0; 
+  animation: fadeInUp 0.8s ease-out 0.4s forwards; 
+}
 
-.about-me-text p { padding-bottom: 1em; }
+.about-me-text p { padding-bottom: 1em; line-height: 1.7; text-align: left; word-spacing: normal; word-wrap: break-word; overflow-wrap: break-word; hyphens: auto; }
 
 .contact-info { display: table-cell; vertical-align: middle; text-align: left; padding-top: 0.8em; }
 
@@ -1129,27 +1136,79 @@ html {
 @media screen and (max-width: 480px) {
   body {
     font-size: 0.95em;
-    line-height: 1.65;
+    line-height: 1.5;
+    text-align: left;
+    word-spacing: normal;
+    letter-spacing: normal;
   }
   
   h0 {
     font-size: 1.5em;
     line-height: 1.2;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   
   h1 {
     font-size: 1.3em;
     line-height: 1.25;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   
   h2 {
     font-size: 1.2em;
     line-height: 1.3;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   
   .publication-title-container {
     font-size: 1.05em;
     line-height: 1.4;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    word-spacing: normal;
+  }
+  
+  p, .publication-info-container, .publication-authors {
+    text-align: left;
+    text-justify: none;
+    word-spacing: normal;
+    letter-spacing: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  .about-me-text {
+    text-align: left;
+    text-justify: none;
+    word-spacing: normal;
+  }
+  
+  .about-me-text p {
+    text-align: left;
+    text-justify: none;
+    word-spacing: normal;
+    line-height: 1.6;
+  }
+  
+  .wrapper {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  
+  .page-content {
+    margin-top: 70px;
   }
 }
 
@@ -1307,13 +1366,19 @@ img:not(.bio-photo img) {
 /* Enhanced bio section layout */
 .about-me-text {
   clear: both;
-  text-align: justify;
-  text-justify: inter-word;
+  text-align: left;
+  word-spacing: normal;
+  letter-spacing: normal;
 }
 
 .about-me-text p {
   padding-bottom: 1em;
   line-height: 1.7;
+  text-align: left;
+  word-spacing: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 /* Subtle improvements to publication layout */
@@ -1649,4 +1714,60 @@ img[loading="lazy"].loaded {
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(135deg, var(--accent-hover), var(--accent-color));
+}
+
+/* Mobile/Desktop visibility controls */
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+  
+  .mobile-only {
+    display: block;
+  }
+}
+
+/* Enhanced mobile CV download button */
+.mobile-cv-download-btn:hover {
+  background: linear-gradient(135deg, #3290b9 0%, #2c7da0 100%) !important;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(67, 192, 246, 0.4) !important;
+}
+
+.mobile-cv-download-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* CV container improvements */
+.cv-container {
+  margin-top: 20px;
+}
+
+.mobile-pdf-container {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Better mobile spacing for CV page */
+@media screen and (max-width: 480px) {
+  .cv-container {
+    margin-top: 15px;
+  }
+  
+  .mobile-pdf-container {
+    padding: 1.5em 1em;
+    margin: 0 -0.5em;
+  }
+  
+  .mobile-cv-download-btn {
+    padding: 0.8em 1.5em !important;
+    font-size: 1em !important;
+  }
 }
