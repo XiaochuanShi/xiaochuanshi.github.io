@@ -55,7 +55,15 @@ from: https://designschool.canva.com/blog/website-color-schemes/
 
 .wrapper:after { content: ""; display: table; clear: both; }
 
-.wrapper { max-width: -webkit-calc(800px - (1.2em * 2)); max-width: calc(800px - (1.2em * 2)); margin-left: auto; margin-right: auto; padding-left: 1.2em; padding-right: 1.2em; }
+.wrapper { 
+  max-width: -webkit-calc(800px - (1.2em * 2)); 
+  max-width: calc(800px - (1.2em * 2)); 
+  margin-left: auto; 
+  margin-right: auto; 
+  padding-left: 1.2em; 
+  padding-right: 1.2em; 
+  box-sizing: border-box;
+}
 
 @media screen and (max-width: 800px) { .wrapper { max-width: -webkit-calc(800px - (1.2em)); max-width: calc(800px - (1.2em)); padding-right: 1.2em; padding-left: 1.2em; } }
 
@@ -74,6 +82,40 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  scrollbar-gutter: stable;
+  scrollbar-width: auto;
+  scrollbar-color: var(--accent-color) #f8f9fa;
+}
+
+/* Hide scrollbar during initial loading */
+body.loading {
+  overflow: hidden;
+}
+
+body.loading html {
+  overflow: hidden;
+}
+
+/* Prevent layout shifts during loading */
+.page-content { 
+  padding: 0px; 
+  margin-top: 50px; 
+  opacity: 0;
+  animation: pageLoad 0.8s ease-out 0.1s forwards;
+  min-height: calc(100vh - 120px);
+  contain: layout style;
+}
+
+/* Main page (index.html) - increased spacing */
+article.page-content {
+  margin-top: 70px;
+  min-height: calc(100vh - 140px);
+}
+
+/* Sub-folder pages - reduced spacing */
+div.page-content {
+  margin-top: 38px;
+  min-height: calc(100vh - 38px);
 }
 
 h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol, dl, figure { margin-bottom: 0.75em; }
@@ -361,9 +403,11 @@ pre > code {
 
 .contact-list-link:hover .contact-fa { color: var(--accent-color); }
 
-@media (min-width: 700px) { .short { display: none; /* hide the short content on large screens */ } .long { display: inline; /* show the long content on large screens */ } }
+.contact-list-link:hover .contact-fa { color: var(--accent-color); }
 
-@media (max-width: 699px) { .long { display: none; } }
+@media (min-width: 540px) { .short { display: none; /* hide the short content on large screens */ } .long { display: inline; /* show the long content on large screens */ } }
+
+@media (max-width: 539px) { .long { display: none; } }
 
 ul.listing { list-style-type: none; margin-left: 0px; }
 
@@ -563,13 +607,6 @@ ul.listing li.listing-item a { font-weight: 400; font-family: "Inter", sans-seri
 
 @media screen and (max-width: 699px) { .footer-wrapper { font-size: 0.9em; padding: 0.8em; display: block; } .footer-wrapper .footer-last-update { width: 100%; color: #999999; padding: 0px; margin: 0px; margin-top: 0.8em; } .footer-wrapper .footer-list { float: left; margin: 0px; } .footer-wrapper .footer-list-item { display: block; text-align: left; padding-left: 0px; padding-top: 0.32em; padding-bottom: 0.32em; } }
 
-.page-content { 
-  padding: 0px; 
-  margin-top: 60px; 
-  opacity: 0;
-  animation: pageLoad 0.8s ease-out 0.1s forwards;
-}
-
 .page-content > p { font-size: 0.95em; margin-bottom: 1em; }
 
 @media screen and (max-width: 699px) { 
@@ -589,13 +626,54 @@ ul.listing li.listing-item a { font-weight: 400; font-family: "Inter", sans-seri
   }
   
   .page-content { 
-    margin-top: 90px; 
-  } 
+    margin-top: 70px;
+    min-height: calc(100vh - 70px);
+  }
+  
+  /* Main page mobile - increased spacing */
+  article.page-content {
+    margin-top: 70px;
+    min-height: calc(100vh - 70px);
+  }
+  
+  /* Sub-folder pages mobile - reduced spacing */
+  div.page-content {
+    margin-top: 45px;
+    min-height: calc(100vh - 45px);
+  }
+  
+  /* Ensure stable scrollbar on mobile */
+  html {
+    scrollbar-gutter: stable;
+    overflow-y: scroll;
+  }
+  
+  body {
+    scrollbar-gutter: stable;
+    overflow-x: hidden;
+  }
+  
+  /* Hide scrollbar during loading on mobile */
+  body.loading {
+    overflow: hidden;
+  }
+  
+  body.loading html {
+    overflow: hidden;
+  }
+  
+  .wrapper {
+    padding-left: 1.2em;
+    padding-right: 1.2em;
+    box-sizing: border-box;
+  }
 }
 
 html { 
   overflow-y: scroll; 
   scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+  min-height: 100%;
 }
 
 .post-list { margin-left: 0; list-style: none; }
@@ -1293,11 +1371,11 @@ img:not(.bio-photo img) {
 
 /* Better spacing for main content sections */
 .page-content .wrapper > h1:first-of-type {
-  margin-top: 0.2em;
+  margin-top: 0em;
 }
 
 .page-content .wrapper > h1 {
-  margin-top: 1.5em;
+  margin-top: 1em;
   margin-bottom: 0.8em;
 }
 
@@ -1698,11 +1776,13 @@ img[loading="lazy"].loaded {
 /* Better scrollbar styling to reduce visual impact */
 ::-webkit-scrollbar {
   width: 12px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-track {
   background: #f8f9fa;
   border-radius: 6px;
+  margin: 2px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -1710,6 +1790,7 @@ img[loading="lazy"].loaded {
   border-radius: 6px;
   border: 2px solid #f8f9fa;
   transition: var(--transition-fast);
+  min-height: 20px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

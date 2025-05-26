@@ -41,7 +41,7 @@
     <!-- End Google Tag Manager -->
 </head>
 
-  <body>
+  <body class="loading">
   <!-- Google Tag Manager (noscript) -->
   <noscript>
       <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K28HJ5L" height="0" width="0" style="display:none;visibility:hidden"></iframe>
@@ -180,8 +180,27 @@ try { // prevent exception on browsers not supporting DOM styleSheets properly
     }
 } catch (ex) {}
 }
-    </script>  
+    </script>
 
+    <script type="text/javascript">
+        // Fix scrollbar instability during loading
+        document.addEventListener('DOMContentLoaded', function() {
+            // Remove loading class after a short delay to ensure content is rendered
+            setTimeout(function() {
+                document.body.classList.remove('loading');
+            }, 100);
+        });
+
+        // Also remove loading class when window is fully loaded
+        window.addEventListener('load', function() {
+            document.body.classList.remove('loading');
+        });
+
+        // Fallback: remove loading class after animations complete
+        setTimeout(function() {
+            document.body.classList.remove('loading');
+        }, 1500);
+    </script>
 
 </body>
 </html> 
