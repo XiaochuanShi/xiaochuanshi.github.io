@@ -701,10 +701,13 @@ html {
 .news-list { 
   border: 0px; 
   font-size: 0.9em; 
-  border-spacing: 0em 0.8em; 
+  border-spacing: 0em 0.0em;
 }
 
-.news-list td { vertical-align: top; }
+.news-list td {
+  vertical-align: top;
+  border-spacing: 0em 0em;
+}
 
 .news-list p { margin: 0px; }
 
@@ -1093,7 +1096,8 @@ html {
 
 .teaching li {
   display: flex;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
   padding: 1.2em 1.5em;
   margin-bottom: 1.2em;
   background: linear-gradient(135deg, rgba(72, 81, 105, 0.03) 0%, rgba(72, 81, 105, 0.01) 100%);
@@ -1106,6 +1110,24 @@ html {
   opacity: 0;
   animation: slideInRight 0.6s ease-out forwards;
 }
+
+.awards li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8em 1.5em;
+  margin-bottom: 0.6em;
+  background: linear-gradient(135deg, rgba(67, 192, 246, 0.03) 0%, rgba(67, 192, 246, 0.01) 100%);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--accent-color);
+  transition: var(--transition);
+  border: 1px solid rgba(67, 192, 246, 0.1);
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+
 
 .teaching li::before {
   content: '';
@@ -1450,6 +1472,16 @@ img:not(.bio-photo img) {
 }
 
 .about-me-text p {
+  padding-bottom: 1em;
+  line-height: 1.7;
+  text-align: left;
+  word-spacing: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.about-me-text p2 {
   padding-bottom: 1em;
   line-height: 1.7;
   text-align: left;
